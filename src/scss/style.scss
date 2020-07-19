@@ -1,0 +1,18 @@
+@import "variables";
+
+body {
+    background-color: $light;
+    color: $dark;
+    font-family: $font-family;
+}
+
+h1 {
+    font-size: 3.25rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+}
