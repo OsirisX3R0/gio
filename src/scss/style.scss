@@ -16,3 +16,17 @@ h1 {
     display: grid;
     justify-content: center;
 }
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: $light;
+        color: $dark;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: $dark;
+        color: $light;
+    }
+}
