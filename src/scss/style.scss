@@ -8,13 +8,43 @@ body {
 
 h1 {
     font-size: 3.25rem;
+    text-align: center;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 500px;
     margin: auto;
+}
+
+.field {
+    width: 100%;
+    margin-bottom: .45rem;
     display: grid;
-    justify-content: center;
+    grid-template-columns: 11fr 1fr;
+    gap: .45rem;
+}
+
+input {
+    // width: 100%;
+    border-radius: 5px;
+    border: 0;
+    font-family: $font-family;
+    padding: .45rem;
+}
+
+button {
+    @extend input;
+    width: auto;
+    color: $light;
+    font-weight: 600;
+
+    &.success {
+        background-color: $success;
+    }
+
+    &.danger {
+        background-color: $danger;
+    }
 }
 
 @media (prefers-color-scheme: light) {
