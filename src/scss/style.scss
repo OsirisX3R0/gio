@@ -37,13 +37,31 @@ button {
     width: auto;
     color: $light;
     font-weight: 600;
+    transition: all .2s;
+    &.primary{
+        width: 100%;
+        background-color: $primary;
+        color: $dark;
+
+        &:hover {
+            background-color: $primary-dark;
+        }
+    } 
 
     &.success {
         background-color: $success;
+
+        &:hover {
+            background-color: $success-dark;
+        }
     }
 
     &.danger {
         background-color: $danger;
+
+        &:hover {
+            background-color: $danger-dark;
+        }
     }
 }
 

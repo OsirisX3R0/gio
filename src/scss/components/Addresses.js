@@ -28,11 +28,14 @@ const Addresses = () => {
             {addresses.length > 1 && <button className='danger close' onClick={() => removeAddress(i)}>X</button>}
         </div>
         ))
+
+    let geocodeButton = <button className='primary'>Geocode</button>
     return (
         <>
             {addAddressButton}
             <div>Add addresses below</div>
             {addressInputs}
+            {geocodeButton}
         </>
     )
 }

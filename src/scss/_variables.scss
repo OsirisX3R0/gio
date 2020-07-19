@@ -1,8 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
 $primary: #3BE5FF;
+$primary-dark: darken($primary, 20%);
 $danger: tomato;
+$danger-dark: darken($danger, 10%);
 $success: #44B345;
+$success-dark: darken($success, 10%);
 $light: #f0f0f0;
 $dark: #434343;
 $font-family: 'Source Code Pro', monospace;
