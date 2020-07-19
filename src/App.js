@@ -1,8 +1,8 @@
 import React from 'react'
 
 import './scss/style.scss'
-import Addresses from './scss/components/Addresses'
-import { GlobalProvider } from './scss/context/GlobalContext';
+import { GlobalProvider } from './context/GlobalContext';
+import Addresses from './components/Addresses';
 
 function App() {
   return (
