@@ -16,12 +16,22 @@ h1 {
     margin: auto;
 }
 
+.fields {
+    margin-top: .65rem;
+}
+
 .field {
     width: 100%;
-    margin-bottom: .45rem;
     display: grid;
     grid-template-columns: 11fr 1fr;
-    gap: .45rem;
+    gap: .65rem;
+    margin-bottom: .65rem;
+
+    &.only {
+        input {
+            grid-column: 1 / -1;
+        }
+    }
 }
 
 input {
@@ -37,7 +47,18 @@ button {
     width: auto;
     color: $light;
     font-weight: 600;
+    box-shadow: inset -3px -3px 0px rgba(0, 0, 0, 0.15);
     transition: all .2s;
+
+    &:disabled {
+        background-color: desaturate($primary, 15%);
+        cursor: not-allowed;
+
+        &:hover {
+            background-color: desaturate($primary, 15%);
+        }
+    }
+
     &.primary{
         width: 100%;
         background-color: $primary;

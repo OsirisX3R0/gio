@@ -1,8 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext'
+import useRequest from '../hooks/useRequest'
 
 const Addresses = () => {
-    const { addresses, setAddresses, addAddress, removeAddress } = useContext(GlobalContext)
+    const { 
+        addresses, 
+        setAddresses, 
+        coordResults,
+        fetchCoords,
+        fetchBatchCoords,
+        addAddress, 
+        removeAddress 
+    } = useContext(GlobalContext)
+
+    const fetchAddresses = () => {
+
+    }
 
     const handleAddressChange = (e, index) => {
         let { value } = e.target
@@ -16,6 +29,19 @@ const Addresses = () => {
         ]))
     }
 
+    const geocode = () => {
+        if (addresses.length > 1) {
+            // setUrl(`${baseUrl}?api_key=${process.env.REACT_APP_GEOCODIO_API_KEY}`)
+            // setOptions({ method: 'POST', body: JSON.stringify(addresses) })
+            fetchBatchCoords()
+        } else {
+            // let [address] = addresses
+            // setUrl(`${baseUrl}?q=${address}&api_key=${process.env.REACT_APP_GEOCODIO_API_KEY}`)
+            // setOptions(baseOptions)
+            fetchCoords()
+        }
+    }
+
     let addAddressButton = addresses.length < 5 && (
         <button className='success' onClick={() => addAddress()}>+ Add Address</button>
     )
@@ -23,18 +49,27 @@ const Addresses = () => {
     let addressInputs = addresses && 
         addresses.length > 0 && 
         addresses.map((address, i) => (
-        <div className='field' key={i}>
+        <div className={`field${addresses.length === 1 ? ' only' : ''}`} key={i}>
             <input type='text' value={address} onChange={(e) => handleAddressChange(e, i)} />
             {addresses.length > 1 && <button className='danger close' onClick={() => removeAddress(i)}>X</button>}
         </div>
         ))
 
-    let geocodeButton = <button className='primary'>Geocode</button>
+    let geocodeButton = (
+        <button 
+            className='primary' 
+            onClick={() => geocode()}
+            disabled={addresses.every(a => a === '')}
+        >
+            Geocode
+        </button>
+    )
     return (
         <>
             {addAddressButton}
-            <div>Add addresses below</div>
-            {addressInputs}
+            <div className='fields'>
+                {addressInputs}
+            </div>
             {geocodeButton}
         </>
     )
