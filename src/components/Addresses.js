@@ -30,16 +30,8 @@ const Addresses = () => {
     }
 
     const geocode = () => {
-        if (addresses.length > 1) {
-            // setUrl(`${baseUrl}?api_key=${process.env.REACT_APP_GEOCODIO_API_KEY}`)
-            // setOptions({ method: 'POST', body: JSON.stringify(addresses) })
-            fetchBatchCoords()
-        } else {
-            // let [address] = addresses
-            // setUrl(`${baseUrl}?q=${address}&api_key=${process.env.REACT_APP_GEOCODIO_API_KEY}`)
-            // setOptions(baseOptions)
-            fetchCoords()
-        }
+        if (addresses.length > 1) fetchBatchCoords()
+        else fetchCoords()
     }
 
     let addAddressButton = addresses.length < 5 && (
@@ -64,6 +56,34 @@ const Addresses = () => {
             Geocode
         </button>
     )
+
+    let results = coordResults.results && 
+        coordResults.results.map((result, i) => (
+            <div key={i}>
+                <div className='section'>
+                    <div><strong>Address</strong></div>
+                    <div>
+                        {`${result.address_components.number} 
+                        ${result.address_components.formatted_street}`}                                        
+                    </div>
+                    <div>
+                        {`${result.address_components.city},
+                        ${result.address_components.state}
+                        ${result.address_components.zip}`}
+                    </div>
+                </div>
+                <div className='section'>
+                    {`${result.address_components.county},
+                    ${result.address_components.country}`}
+                </div>
+                <div className='section'>
+                    <div><strong>Coordinates</strong></div>
+                    <div>{`Latitude: ${result.location.lat}`}</div>
+                    <div>{`Longitude: ${result.location.lng}`}</div>
+                </div>
+            </div>
+        ))
+
     return (
         <>
             {addAddressButton}
@@ -71,6 +91,7 @@ const Addresses = () => {
                 {addressInputs}
             </div>
             {geocodeButton}
+            {results}
         </>
     )
 }
